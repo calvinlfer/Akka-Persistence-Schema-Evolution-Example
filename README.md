@@ -14,6 +14,7 @@ Here is what the set up looks like when persisting on the latest commit:
 **Note:** the event adapter is not being used for V2 events since its a pass-through
 
 Here is the setup for recovering:
+
 **V1**
 `Shopping Cart Actor <- Recover Message V2 <- Event Adapter (promote V1 ~> V2) <- Serializer (V1) <- Journal`
 

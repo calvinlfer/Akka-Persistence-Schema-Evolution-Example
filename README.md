@@ -26,7 +26,7 @@ Here is the setup for recovering:
 **Note:** the event adapter is not being used for V2 events since its a pass-through
 
 ## How to use the application ##
-- Revert to commit f6058d3 to persist V1 events
+- Revert to commit [f6058d3](https://github.com/calvinlfer/Akka-Persistence-Schema-Evolution-Example/commit/f6058d3ade3c5b1b5c6e0c73adcddb9c0db3eb1a) to persist V1 events
     - `git checkout f6058d3`
 - Revert to master to persist V2 events and see the promotion from V1 ~> V2
     - `git checkout master`

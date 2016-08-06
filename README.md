@@ -11,6 +11,7 @@ which essentially does the Schema Evolution.
 
 Here is what the set up looks like when persisting on the latest commit:
 `Shopping Cart Actor -> Persist Message V2 -> Event Adapter (pass through) -> Serializer -> Journal`
+
 **Note:** the event adapter is not being used for V2 events since its a pass-through
 
 Here is the setup for recovering:

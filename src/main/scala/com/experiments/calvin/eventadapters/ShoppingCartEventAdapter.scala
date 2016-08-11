@@ -1,7 +1,7 @@
 package com.experiments.calvin.eventadapters
 
 import akka.persistence.journal.{EventAdapter, EventSeq}
-import com.experiments.calvin.models.{ItemV2, ShoppingCartV1, ShoppingCartV2}
+import com.experiments.calvin.models._
 
 /**
   * This class upgrades old events from the event journal
@@ -22,14 +22,19 @@ class ShoppingCartEventAdapter extends EventAdapter {
 
   override def fromJournal(event: Any, manifest: String): EventSeq = event match {
     case sc @ ShoppingCartV1(itemsV1) =>
-      println("Reading V1 from journal and doing promotion to V2")
+      println("Reading V1 from journal and doing promotion to V3")
       EventSeq(
       // do promotion
-      ShoppingCartV2(itemsV1.map(each => ItemV2(each.id, each.name, "")))
+      ShoppingCartV3(itemsV1.map(each => ItemV3(each.id, each.name, "")))
     )
-
-    case sc: ShoppingCartV2 =>
-      println("V2 event encountered, no promotion needed")
+    case sc @ ShoppingCartV2(itemsV2) =>
+      println("Reading V2 from journal and doing promotion to V3")
+      EventSeq(
+      // do promotion
+      ShoppingCartV3(itemsV2.map(each => ItemV3(each.id, each.name, each.description)))
+    )
+    case sc: ShoppingCartV3 =>
+      println("V3 event encountered, no promotion needed")
       EventSeq(sc)
   }
 }

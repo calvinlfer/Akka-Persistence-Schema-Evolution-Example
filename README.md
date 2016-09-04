@@ -14,15 +14,15 @@ Here is what the set up looks like when persisting on the latest commit:
 
 **Note:** the event adapter is not being used for Vn events since its a pass-through
 
-Here is the setup for recovering:
+Here is the setup for recovering where Vn (n=3) is the latest version:
 
 **V1**:
 
-`Shopping Cart Actor <- Recover Message V2 <- Event Adapter (promote V1 ~> V3) <- Serializer (V1) <- Journal`
+`Shopping Cart Actor <- Recover Message V3 <- Event Adapter (promote V1 ~> V3) <- Serializer (V1) <- Journal`
 
 **V2**:
 
-`Shopping Cart Actor <- Recover Message V2 <- Event Adapter (promote V2 ~> V3) <- Serializer (V2) <- Journal`
+`Shopping Cart Actor <- Recover Message V3 <- Event Adapter (promote V2 ~> V3) <- Serializer (V2) <- Journal`
 
 **Vn**:
 
